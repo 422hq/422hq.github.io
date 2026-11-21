@@ -1,0 +1,68 @@
+
+.mobile-index-back { display: none; }
+
+@media (max-width: 760px) {
+  html, body { height: auto; min-height: 100%; }
+  body { overflow: auto; }
+  .viewport { display: block; width: 100%; height: auto; overflow: visible; }
+  .left-pane, .right-pane {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    overflow: visible;
+    scrollbar-gutter: auto;
+  }
+  .left-pane { min-height: 0; border-right: 0; padding: 18px 16px 28px; }
+  .glasses-preview { top: 18px; right: 16px; }
+  .secondary-records { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+
+  .commercial-table, .personal-table { min-width: 0; table-layout: fixed; }
+  .commercial-table :is(col, th, td):nth-child(3),
+  .commercial-table :is(col, th, td):nth-child(5),
+  .commercial-table :is(col, th, td):nth-child(6),
+  .personal-table :is(col, th, td):nth-child(3) { display: none; }
+  .commercial-table .col-year, .personal-table .col-year { width: 16%; }
+  .commercial-table .col-title, .personal-table .col-title { width: 58%; }
+  .commercial-table .col-type, .personal-table .col-status { width: 26%; }
+  .personal-table td:first-child, .personal-table td:nth-child(2) { width: auto; }
+  .table-frame, .cell-scroll {
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto;
+    overscroll-behavior: auto;
+  }
+
+  .right-pane { display: block; }
+  .right-pane[data-has-view="true"] { min-height: 100dvh; }
+  .right-pane-body { min-height: inherit; padding-top: 20px; }
+  .right-pane-content:not(:empty), .right-pane-credits { padding-inline: 16px; }
+  .right-pane-content:not(:empty) { padding-top: 0; }
+  .mobile-index-back:not([hidden]) {
+    display: block;
+    align-self: flex-start;
+    margin: 0 16px 16px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .tag-results-header { min-height: 0; }
+  .tag-results:not([data-mode="list"]) .tag-results-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .info-image { width: 100%; }
+  .detail-title-with-website { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+  .detail-website + .detail-media { margin-top: 0; }
+
+  .detail-slider-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto;
+    padding-block: 8px;
+  }
+  .detail-slider-viewport::-webkit-scrollbar { display: none; }
+  .detail-slide { scroll-snap-align: start; scroll-snap-stop: always; }
+}

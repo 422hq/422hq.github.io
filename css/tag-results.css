@@ -1,0 +1,32 @@
+.tag-results { min-width: 0; color: #000; font: inherit; }
+.tag-results-header { display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; min-height: calc(4lh + var(--archive-top-gap) + 7px); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #000; }
+.tag-results-back { margin-inline-start: auto; padding: 0; border: 0; background: none; color: inherit; font: inherit; white-space: nowrap; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.tag-results-eyebrow { margin: 0; }
+.tag-results-summary { display: flex; align-items: baseline; gap: var(--heading-count-gap); min-width: 0; }
+.tag-results-title { margin: 0; font: inherit; letter-spacing: normal; overflow-wrap: anywhere; }
+.tag-results-count { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tag-results-list { display: grid; grid-template-columns: repeat(4, minmax(0, min(157px, calc((100% - 66px) / 4)))); column-gap: 22px; row-gap: 18px; justify-content: space-between; width: 100%; padding-inline: 4px; }
+.tag-result-project { display: block; min-width: 0; width: 100%; padding: 0; border: 0; background: none; color: #000; font: inherit; text-align: left; cursor: pointer; }
+.tag-results:not([data-mode="list"]) .tag-result-project { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 0; align-self: start; }
+.tag-result-project:hover .tag-result-project-title, .tag-result-project:focus-visible .tag-result-project-title { text-decoration: underline; text-underline-offset: 2px; }
+.tag-result-thumbnail-slot { display: flex; align-items: flex-start; width: 100%; aspect-ratio: 16 / 9; }
+.tag-result-thumbnail-placeholder, .tag-result-thumbnail-image { display: block; box-sizing: border-box; width: calc(100% * var(--thumbnail-width-factor, 1)); height: 100%; border: 1px solid var(--rule); }
+.tag-result-thumbnail-placeholder { display: flex; align-items: center; justify-content: center; background: #f1f1f1; color: #666; font-size: 10px; }
+.tag-result-thumbnail-image { border: 0; object-fit: contain; object-position: left top; }
+.tag-results:not([data-mode="list"]) .tag-result-thumbnail-slot { width: min(100%, 157px); aspect-ratio: 16 / 9; margin-bottom: 4px; }
+.tag-results:not([data-mode="list"]) .tag-result-project-caption { display: contents; }
+.tag-results[data-mode="grid-b"] .tag-result-project-reference { grid-row: 1; margin-bottom: 2px; }
+.tag-results[data-mode="grid-b"] .tag-result-thumbnail-slot { grid-row: 2; }
+.tag-results[data-mode="grid-b"] .tag-result-project-title { grid-row: 3; }
+.tag-results:not([data-mode="list"]) .tag-result-project-title { width: min(100%, 157px); }
+.tag-result-project-reference { display: block; color: #000; font-size: 11px; white-space: nowrap; }
+.tag-result-project-title { display: block; min-width: 0; overflow-wrap: anywhere; }
+.tag-results[data-mode="list"] .tag-results-list { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.tag-results[data-mode="list"] .tag-result-project { display: grid; grid-template-columns: 136px minmax(0, 1fr); gap: 12px; align-items: start; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.tag-results[data-mode="list"] .tag-result-thumbnail-slot { height: 74px; }
+.tag-results[data-mode="list"] .tag-result-thumbnail-placeholder[data-ratio="16:9"] { width: min(100%, 131px); }
+.tag-results[data-mode="list"] .tag-result-thumbnail-placeholder[data-ratio="9:16"] { width: min(100%, 42px); }
+.tag-results[data-mode="list"] .tag-result-thumbnail-placeholder[data-ratio="5:4"] { width: min(100%, 92px); }
+.tag-results[data-mode="list"] .tag-result-project-caption { display: block; margin-top: 0; }
+.tag-results[data-mode="list"] .tag-result-project-reference { display: none; }
+.tag-results-empty { grid-column: 1 / -1; margin: 0; }
