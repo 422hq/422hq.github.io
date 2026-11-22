@@ -1,4 +1,4 @@
-import { normalizeDisplayTypography, formatTagLabel } from "./tables.js?v=477395226372dddc";
+import { normalizeDisplayTypography, formatTagLabel } from "./tables.js?v=b3d46e990981b2e1";
 
 export function safeExternalUrl(value) {
   try {
@@ -182,6 +182,10 @@ export function shouldOpenProject(dragDistance, hasSelection) {
   return dragDistance < 5 && !hasSelection;
 }
 
+export function isFourByFiveMedia(width, height) {
+  return width > 0 && height > 0 && Math.abs(width / height - 4 / 5) < 0.005;
+}
+
 function appendMedia(container, project, item, { slider = false } = {}) {
   const mediaType = mediaKind(item);
   const media = document.createElement('div');
@@ -192,6 +196,16 @@ function appendMedia(container, project, item, { slider = false } = {}) {
     if (slider) container.style.setProperty('--slide-width', width);
     else media.style.width = width;
   };
+  const markMobileWidth = (width, height, intrinsic = false) => {
+    const wide = isFourByFiveMedia(width, height)
+      || (!slider && width > 0 && height > 0 && Math.abs(width / height - 5 / 4) < 0.005);
+    media.toggleAttribute('data-mobile-wide', wide);
+    if (slider) container.toggleAttribute('data-mobile-wide', wide);
+    if (intrinsic && width > 0) {
+      media.style.setProperty('--media-native-width', `${width}px`);
+      if (slider) container.style.setProperty('--media-native-width', `${width}px`);
+    }
+  };
   if (mediaType === 'local-video') {
     const video = document.createElement('video');
     video.src = localVideoSource(item.mediaUrl);
@@ -201,12 +215,13 @@ function appendMedia(container, project, item, { slider = false } = {}) {
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
-    if (!fitPersonalPoster) {
-      video.addEventListener('loadedmetadata', () => {
+    video.addEventListener('loadedmetadata', () => {
+      markMobileWidth(video.videoWidth, video.videoHeight, true);
+      if (!fitPersonalPoster) {
         const frame = videoFrameRatioFromDimensions(video.videoWidth, video.videoHeight);
         if (frame) setWidth(frame.width);
-      });
-    }
+      }
+    });
     media.append(video);
   } else if (mediaType === 'video') {
     const instagram = instagramEmbedUrl(item.mediaUrl);
@@ -228,6 +243,7 @@ function appendMedia(container, project, item, { slider = false } = {}) {
       const setFrame = frame => {
         media.style.aspectRatio = frame.ratio;
         setWidth(frame.width);
+        markMobileWidth(...frame.ratio.split('/').map(Number));
       };
       setFrame(initialVideoFrame(item));
       if (!item.aspectRatio && vimeoEmbedUrl(item.mediaUrl) && !videoFrameRatio(item.mediaUrl)) {
@@ -243,22 +259,24 @@ function appendMedia(container, project, item, { slider = false } = {}) {
     const image = document.createElement('img');
     image.src = src;
     image.alt = normalizeDisplayTypography(project.title);
-    if (!fitPersonalPoster) {
-      image.addEventListener('load', () => {
+    image.addEventListener('load', () => {
+      markMobileWidth(image.naturalWidth, image.naturalHeight, true);
+      if (!fitPersonalPoster) {
         if (image.naturalHeight > image.naturalWidth) {
           setWidth('min(100%, clamp(200px, 38%, 300px))');
         }
-      });
-    }
+      }
+    });
     media.append(image);
   } else if (mediaType === 'web') {
     const href = safeExternalUrl(item.mediaUrl);
     if (!href) return;
     const link = document.createElement('a');
+    link.className = 'navigation-link';
     link.href = href;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.textContent = 'Visit Website ↗';
+    link.textContent = 'Visit Website ↗\uFE0E';
     media.append(link);
   } else return;
   container.append(media);

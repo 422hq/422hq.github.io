@@ -267,12 +267,12 @@ export const projectDetailsById = {
   "commercial-029": {
     "production": "Flexible Pictures",
     "description": "",
-    "tags": "ASSISTANT DIRECTING"
+    "tags": "ASSISTANT DIRECTING, music video"
   },
   "commercial-028": {
     "production": "Flexible Pictures",
     "description": "",
-    "tags": "ASSISTANT DIRECTING, retouching"
+    "tags": "ASSISTANT DIRECTING, music video, retouching"
   },
   "commercial-030": {
     "production": "Flexible Pictures",

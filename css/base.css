@@ -14,8 +14,19 @@
 * { box-sizing: border-box; }
 html, body { width: 100%; height: 100%; }
 body { margin: 0; overflow: hidden; }
-a { color: inherit; text-underline-offset: 3px; }
-a:hover { text-decoration-thickness: 2px; }
+a { color: inherit; }
+.navigation-link, .inline-link {
+  color: inherit;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3.5px;
+}
+.navigation-link { text-decoration-line: none; }
+.inline-link, .navigation-link:focus-visible { text-decoration-line: underline; }
+@media (hover: hover) and (pointer: fine) {
+  .navigation-link:hover { text-decoration-line: underline; }
+}
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   outline: 1px solid #000;
   outline-offset: 4px;
@@ -27,7 +38,7 @@ h2 { letter-spacing: .035em; text-transform: none; }
 .site-meta-primary, .site-meta-secondary { display: grid; align-content: start; }
 .site-meta-secondary { font-variant-numeric: tabular-nums; }
 .site-meta time span { display: block; }
-.info-trigger { width: max-content; padding: 0; border: 0; background: transparent; color: #000; font: inherit; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 2px; }
+.info-trigger { width: max-content; padding: 0; border: 0; background: transparent; color: #000; font: inherit; cursor: pointer; text-align: left; }
 .archive-module { min-width: 0; }
 .module-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 6px; border-bottom: 1px solid #000; }
 .count { margin-left: var(--heading-count-gap); font-variant-numeric: tabular-nums; }
@@ -41,8 +52,9 @@ h2 { letter-spacing: .035em; text-transform: none; }
 .personal-frame, .tag-frame { height: 133px; }
 .personal-frame { overflow-y: scroll; }
 .personal-frame::after { content: ''; display: block; height: 1px; }
-.sound-frame { display: flex; align-items: center; gap: 16px; min-width: 0; }
-.sound-frame iframe { display: block; flex: 1 1 auto; width: 0; min-width: 0; height: 83px; border: 0; }
+.sound .module-heading { justify-content: flex-start; gap: 12px; }
+.sound-frame { min-width: 0; }
+.sound-frame iframe { display: block; width: 100%; min-width: 0; height: 124px; border: 0; }
 .sound-profile-link { flex: none; white-space: nowrap; }
 table { width: 100%; border-collapse: collapse; text-align: left; font-size: 11px; line-height: 1.18; }
 caption { text-align: left; }

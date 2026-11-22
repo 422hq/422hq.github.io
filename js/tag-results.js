@@ -1,9 +1,9 @@
-import { fallbackThumbnailsById } from "./thumbnail-data.js?v=477395226372dddc";
-import { normalizeDisplayTypography, formatTagLabel } from "./tables.js?v=477395226372dddc";
+import { fallbackThumbnailsById } from "./thumbnail-data.js?v=b3d46e990981b2e1";
+import { normalizeDisplayTypography, formatTagLabel } from "./tables.js?v=b3d46e990981b2e1";
 import {
   groupProjectMedia, imageSource, mediaKind, parseProjectTags, videoFrameRatio,
-} from "./project-details.js?v=477395226372dddc";
-import { thumbnailsById } from "./thumbnail-data.js?v=477395226372dddc";
+} from "./project-details.js?v=b3d46e990981b2e1";
+import { thumbnailsById } from "./thumbnail-data.js?v=b3d46e990981b2e1";
 
 const fallbackThumbnail = { kind: 'placeholder', ratio: '16 / 9', label: '16:9' };
 const landscapeRatio = 16 / 9;
@@ -75,7 +75,7 @@ export function createTagResults(tag, projects, mediaById, mode = 'grid-b', { ca
   if (canGoBack) {
     const back = document.createElement('button');
     back.type = 'button';
-    back.className = 'tag-results-back';
+    back.className = 'tag-results-back navigation-link';
     back.textContent = '← Back';
     summary.append(back);
   }

@@ -1,9 +1,12 @@
 
 .mobile-index-back { display: none; }
+.mobile-table-scroll-shell { display: contents; }
+.mobile-table-scroll-track { display: none; }
 
 @media (max-width: 760px) {
   html, body { height: auto; min-height: 100%; }
-  body { overflow: auto; }
+  html { overflow-y: auto; overscroll-behavior-y: auto; }
+  body { overflow: visible; }
   .viewport { display: block; width: 100%; height: auto; overflow: visible; }
   .left-pane, .right-pane {
     width: 100%;
@@ -26,11 +29,31 @@
   .commercial-table .col-type, .personal-table .col-status { width: 26%; }
   .personal-table td:first-child, .personal-table td:nth-child(2) { width: auto; }
   .table-frame, .cell-scroll {
-    -webkit-overflow-scrolling: touch;
     touch-action: auto;
     overscroll-behavior: auto;
   }
 
+  .viewport, .left-pane, .right-pane { overscroll-behavior-y: auto; }
+  .mobile-table-scroll-shell { display: block; position: relative; padding-right: 15px; }
+  .mobile-table-scroll-shell .table-frame { scrollbar-width: none; scrollbar-gutter: auto; }
+  .mobile-table-scroll-shell .table-frame::-webkit-scrollbar { display: none; }
+  .personal-frame::after { display: none; }
+  .mobile-table-scroll-track:not([hidden]) {
+    display: block;
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 15px;
+    background: #f4f4f4;
+    pointer-events: none;
+  }
+  .mobile-table-scroll-thumb {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    right: 3px;
+    border-radius: 999px;
+    background: #c1c1c1;
+  }
   .right-pane { display: block; }
   .right-pane[data-has-view="true"] { min-height: 100dvh; }
   .right-pane-body { min-height: inherit; padding-top: 20px; }
@@ -46,8 +69,6 @@
     color: inherit;
     font: inherit;
     cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
   }
   .tag-results-header { min-height: 0; }
   .tag-results:not([data-mode="list"]) .tag-results-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -65,4 +86,6 @@
   }
   .detail-slider-viewport::-webkit-scrollbar { display: none; }
   .detail-slide { scroll-snap-align: start; scroll-snap-stop: always; }
+  .detail-media[data-mobile-wide] { width: min(100%, var(--media-native-width, 100%)) !important; }
+  .detail-slide[data-mobile-wide] { flex-basis: min(100%, var(--media-native-width, 100%)); }
 }

@@ -864,13 +864,13 @@ export const projectMediaById = {
     {
       "order": 1,
       "mediaType": "video",
-      "mediaUrl": "https://youtu.be/UDpkygPq0Wk?si=8UG0BwZJ22ew9vkB",
+      "mediaUrl": "https://youtube.com/shorts/jMWzX7V4LfA?si=Mz58ZUkgAqjWnq1L",
       "presentation": {
         "group": 0,
         "kind": "single",
         "frame": {
-          "ratio": "16 / 9",
-          "width": "100%"
+          "ratio": "9 / 16",
+          "width": "min(100%, clamp(200px, 38%, 300px))"
         }
       }
     }
@@ -879,13 +879,13 @@ export const projectMediaById = {
     {
       "order": 1,
       "mediaType": "video",
-      "mediaUrl": "https://youtu.be/7NO9Fs9fDXA?si=eEo3rKL5ChN6Xj6O",
+      "mediaUrl": "https://youtube.com/shorts/8-Y7Jfwlg6k?si=nOfnLirJf-PnRqoK",
       "presentation": {
         "group": 0,
         "kind": "single",
         "frame": {
-          "ratio": "16 / 9",
-          "width": "100%"
+          "ratio": "9 / 16",
+          "width": "min(100%, clamp(200px, 38%, 300px))"
         }
       }
     }

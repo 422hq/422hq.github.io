@@ -23,6 +23,52 @@ export function formatTagLabel(value) {
     return word[0].toUpperCase() + word.slice(1).toLowerCase();
   });
 }
+
+
+export function scrollIndicatorMetrics(scrollHeight, clientHeight, scrollTop, trackHeight) {
+  const range = scrollHeight - clientHeight;
+  const available = trackHeight - 8;
+  if (range <= 1 || clientHeight <= 0 || available <= 0) return null;
+  const height = Math.min(available, Math.max(18, available * clientHeight / scrollHeight));
+  const progress = Math.max(0, Math.min(1, scrollTop / range));
+  return { height, top: 4 + progress * (available - height) };
+}
+
+export function addMobileScrollIndicator(frame, mobileLayout) {
+  const shell = document.createElement('div');
+  shell.className = 'mobile-table-scroll-shell';
+  const track = document.createElement('span');
+  track.className = 'mobile-table-scroll-track';
+  track.setAttribute('aria-hidden', 'true');
+  track.hidden = true;
+  const thumb = document.createElement('span');
+  thumb.className = 'mobile-table-scroll-thumb';
+  track.append(thumb);
+  frame.replaceWith(shell);
+  shell.append(frame, track);
+
+  let scheduled = false;
+  const update = () => {
+    scheduled = false;
+    const metrics = mobileLayout.matches
+      ? scrollIndicatorMetrics(frame.scrollHeight, frame.clientHeight, frame.scrollTop, frame.clientHeight) : null;
+    track.hidden = !metrics;
+    if (!metrics) return;
+    thumb.style.height = `${metrics.height}px`;
+    thumb.style.transform = `translateY(${metrics.top}px)`;
+  };
+  const schedule = () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  };
+  frame.addEventListener('scroll', schedule, { passive: true });
+  mobileLayout.addEventListener('change', schedule);
+  const resize = new ResizeObserver(schedule);
+  resize.observe(frame);
+  resize.observe(frame.querySelector('table'));
+  schedule();
+}
 const firstRolePriority = new Map([['director', 0], ['assistant director', 1], ['editor', 2]]);
 const rolePriority = new Map([
   'director', 'editor', 'post production supervisor', 'color grading',

@@ -13,17 +13,7 @@ export const siteInfo = {
         "기획, 연출, 편집을 하며 현재는 프리랜서로 일하고 있다."
       ],
       [
-        "이전에 패션·뷰티 영상 프로덕션 ",
-        {
-          "text": "NMW",
-          "href": "https://www.nmwstudio.net/"
-        },
-        " 그리고 뮤직비디오 프로덕션 ",
-        {
-          "text": "Flexible Pictures",
-          "href": "https://www.instagram.com/flexiblepictures_/"
-        },
-        "에서 일했다."
+        "이전에 패션·뷰티 영상 프로덕션과 뮤직비디오 프로덕션에서 연출과 편집을 했다."
       ],
       [
         "AI를 활용한 창작과 제작 방식을 탐구하고 있으며, 작업 과정과 결과는 이곳에 기록하려 한다."
@@ -45,17 +35,7 @@ export const siteInfo = {
         "A Seoul-based filmmaker working in concept development, directing, and editing. Currently working as a freelancer."
       ],
       [
-        "Previously worked at fashion and beauty film production studio ",
-        {
-          "text": "NMW",
-          "href": "https://www.nmwstudio.net/"
-        },
-        " and music video production company ",
-        {
-          "text": "Flexible Pictures",
-          "href": "https://www.instagram.com/flexiblepictures_/"
-        },
-        "."
+        "Previously worked as a director and editor at a fashion and beauty film production studio and a music video production company."
       ],
       [
         "Currently exploring AI-assisted creative and production processes, with plans to document both the process and outcomes here."
@@ -348,7 +328,7 @@ export const commercialProjects = [
     "displayOrder": 26,
     "year": 2024,
     "title": "3CE MINNIE’S 3 BEST ITEMS",
-    "role": "Editor, color grading, Beauty Retouching",
+    "role": "Editor, Color Grading, Beauty Retouching",
     "type": "Beauty Film",
     "tools": "Premiere Pro, After Effects, DaVinci Resolve",
     "client": "3CE"
@@ -418,7 +398,7 @@ export const commercialProjects = [
     "displayOrder": 33,
     "year": 2024,
     "title": "EITHER& X GISELLE 𝗕𝗟𝗨𝗥 𝗣𝗜𝗫𝗘𝗟 𝗖𝗨𝗦𝗛𝗜𝗢𝗡 behind Film",
-    "role": "Editor, color grading, Beauty Retouching",
+    "role": "Editor, Color Grading, Beauty Retouching",
     "type": "Beauty Film",
     "tools": "Premiere Pro, After Effects, DaVinci Resolve",
     "client": "EITHER&"
@@ -428,7 +408,7 @@ export const commercialProjects = [
     "displayOrder": 34,
     "year": 2024,
     "title": "EITHER& X GISELLE ɢʟᴀᴢᴇᴅ ʟɪᴘ ᴏɪʟ behind Film",
-    "role": "Editor, color grading, Beauty Retouching",
+    "role": "Editor, Color Grading, Beauty Retouching",
     "type": "Beauty Film",
     "tools": "Premiere Pro, After Effects, DaVinci Resolve",
     "client": "EITHER&"

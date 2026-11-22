@@ -1,12 +1,12 @@
-import { siteInfo, commercialProjects, personalProjects, tags, soundCloud } from "./data.js?v=477395226372dddc";
-import { createTable, normalizeDisplayTypography, formatTagLabel } from "./tables.js?v=477395226372dddc";
-import { startClock } from "./clock.js?v=477395226372dddc";
-import { getGlassesPreview } from "./glasses.js?v=477395226372dddc";
-import { projectDetailsById } from "./project-details-data.js?v=477395226372dddc";
-import { projectMediaById } from "./project-media-data.js?v=477395226372dddc";
-import { createProjectDetail, imageSource, shouldOpenProject } from "./project-details.js?v=477395226372dddc";
-import { createTagResults, projectsForTag } from "./tag-results.js?v=477395226372dddc";
-import { introduction, englishIntroduction, contact } from "./info-content.js?v=477395226372dddc";
+import { siteInfo, commercialProjects, personalProjects, tags, soundCloud } from "./data.js?v=b3d46e990981b2e1";
+import { createTable, normalizeDisplayTypography, formatTagLabel, addMobileScrollIndicator } from "./tables.js?v=b3d46e990981b2e1";
+import { startClock } from "./clock.js?v=b3d46e990981b2e1";
+import { getGlassesPreview } from "./glasses.js?v=b3d46e990981b2e1";
+import { projectDetailsById } from "./project-details-data.js?v=b3d46e990981b2e1";
+import { projectMediaById } from "./project-media-data.js?v=b3d46e990981b2e1";
+import { createProjectDetail, imageSource, shouldOpenProject } from "./project-details.js?v=b3d46e990981b2e1";
+import { createTagResults, projectsForTag } from "./tag-results.js?v=b3d46e990981b2e1";
+import { introduction, englishIntroduction, contact } from "./info-content.js?v=b3d46e990981b2e1";
 
 document.querySelector('#site').innerHTML = `
   <div class="viewport">
@@ -14,7 +14,7 @@ document.querySelector('#site').innerHTML = `
       <header class="site-meta">
         <div class="site-meta-primary">
           <h1 id="site-name"></h1>
-          <button class="info-trigger" id="info-trigger" type="button" aria-controls="right-pane-content" aria-expanded="false"></button>
+          <button class="info-trigger navigation-link" id="info-trigger" type="button" aria-controls="right-pane-content" aria-expanded="false"></button>
         </div>
         <div class="site-meta-secondary">
           <p id="site-location"></p>
@@ -41,17 +41,19 @@ document.querySelector('#site').innerHTML = `
           </section>
         </div>
         <section class="archive-module sound" aria-labelledby="sound-heading">
-          <div class="module-heading"><h2 id="sound-heading">Mixset</h2></div>
+          <div class="module-heading">
+            <h2 id="sound-heading">Mixset</h2>
+            <a id="soundcloud-profile" class="sound-profile-link navigation-link" target="_blank" rel="noopener noreferrer">SoundCloud ↗︎</a>
+          </div>
           <div class="sound-frame">
             <iframe id="soundcloud-player" title="SoundCloud Mixset player" loading="eager" scrolling="no" allow="autoplay"></iframe>
-            <a id="soundcloud-profile" class="sound-profile-link" target="_blank" rel="noopener noreferrer">SoundCloud ↗</a>
           </div>
         </section>
       </div>
     </main>
     <aside class="right-pane" aria-label="Information panel">
       <div class="right-pane-body">
-        <button class="mobile-index-back" type="button" hidden>Index</button>
+        <button class="mobile-index-back navigation-link" type="button" hidden>Index</button>
         <div class="right-pane-content" id="right-pane-content" aria-live="polite"></div>
         <footer class="right-pane-credits">
           <p>An ongoing archive of selected works.</p>
@@ -141,6 +143,7 @@ const projectFrames = [document.querySelector('#commercial-table'), document.que
 const tagFrame = document.querySelector('#tag-table');
 const mobileLayout = window.matchMedia('(max-width: 760px)');
 const indexBack = rightPane.querySelector('.mobile-index-back');
+for (const frame of [...projectFrames, tagFrame]) addMobileScrollIndicator(frame, mobileLayout);
 
 const paneHistory = [];
 let currentView = null;
@@ -253,6 +256,7 @@ function createInfoPage() {
         continue;
       }
       const link = document.createElement('a');
+      link.className = 'inline-link';
       link.textContent = part.text;
       link.href = part.href;
       if (link.protocol === 'https:') {
